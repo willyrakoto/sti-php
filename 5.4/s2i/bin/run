@@ -10,7 +10,7 @@ export HTML_ERRORS=${HTML_ERRORS:-ON}
 export INCLUDE_PATH=${INCLUDE_PATH:-.:/opt/app-root/src:/opt/rh/php55/root/usr/share/pear}
 export SESSION_PATH=${SESSION_PATH:-/tmp/sessions}
 # TODO should be dynamically calculated based on container memory limit/16
-export OPCACHE_MEMORY_CONSUMPTION=${OPCACHE_MEMORY_CONSUMPTION:-16M} 
+#export OPCACHE_MEMORY_CONSUMPTION=${OPCACHE_MEMORY_CONSUMPTION:-16M} 
 
 export OPCACHE_REVALIDATE_FREQ=${OPCACHE_REVALIDATE_FREQ:-2}
 
@@ -18,6 +18,6 @@ export PHPRC=${PHPRC:-/opt/rh/php54/root/etc/php.ini}
 export PHP_INI_SCAN_DIR=${PHP_INI_SCAN_DIR:-/opt/rh/php54/root/etc/php.d}
 
 envsubst < /opt/app-root/etc/php.ini.template > /opt/rh/php54/root/etc/php.ini
-envsubst < /opt/app-root/etc/php.d/opcache.ini.template > /opt/rh/php54/root/etc/php.d/opcache.ini
+#envsubst < /opt/app-root/etc/php.d/opcache.ini.template > /opt/rh/php54/root/etc/php.d/opcache.ini
 
 exec httpd -D FOREGROUND
