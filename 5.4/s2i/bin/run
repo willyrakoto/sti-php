@@ -14,7 +14,7 @@ export OPCACHE_MEMORY_CONSUMPTION=${OPCACHE_MEMORY_CONSUMPTION:-16M}
 
 export OPCACHE_REVALIDATE_FREQ=${OPCACHE_REVALIDATE_FREQ:-2}
 
-export PHPRC=${PHPRC:-/opt/rh/php55/root/etc/php.ini}
+export PHPRC=${PHPRC:-/opt/rh/php54/root/etc/php.ini}
 export PHP_INI_SCAN_DIR=${PHP_INI_SCAN_DIR:-/opt/rh/php54/root/etc/php.d}
 
 envsubst < /opt/app-root/etc/php.ini.template > /opt/rh/php54/root/etc/php.ini
