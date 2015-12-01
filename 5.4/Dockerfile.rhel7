@@ -15,7 +15,7 @@ LABEL io.k8s.description="Platform for building and running PHP 5.4 applications
 
 # Labels consumed by Red Hat build service
 LABEL BZComponent="openshift-sti-php-docker" \
-      Name="openshift3/php-54-rhel7" \
+      Name="openshift/php-54-rhel7" \
       Version="5.4" \
       Release="1" \
       Architecture="x86_64"
