@@ -21,7 +21,7 @@ LABEL BZComponent="openshift-sti-php-docker" \
       Architecture="x86_64"
 
 # Install Apache httpd and PHP
-RUN yum-config-manager --disable="*" && \
+RUN yum-config-manager --disable * && \
     yum-config-manager --enable rhel-server-rhscl-7-rpms && \
     yum-config-manager --enable rhel-7-server-optional-rpms && \
     yum install -y --setopt=tsflags=nodocs httpd24 php54 php54-php php54-php-mysqlnd php54-php-pgsql php54-php-bcmath php54-php-devel \
