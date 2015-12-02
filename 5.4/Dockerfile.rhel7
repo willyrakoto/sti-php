@@ -36,6 +36,10 @@ COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 # run and build the applications.
 COPY ./contrib/ /opt/app-root
 
+# Copy php54 conf and module to httpd
+RUN cp /etc/httpd/conf.modules.d/10-php54-php.conf /opt/rh/httpd24/root/etc/httpd/conf.modules.d/ && \
+    cp /usr/lib64/httpd/modules/libphp54-php5.so /opt/rh/httpd24/root/etc/httpd/modules/
+
 # In order to drop the root user, we have to make some directories world
 # writeable as OpenShift default security model is to run the container under
 # random UID.
