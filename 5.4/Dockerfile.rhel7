@@ -25,7 +25,7 @@ RUN yum-config-manager --enable rhel-server-rhscl-7-rpms && \
     yum-config-manager --enable rhel-7-server-optional-rpms && \
     yum install -y --setopt=tsflags=nodocs httpd24 php54 php54-php php54-php-mysqlnd php54-php-pgsql php54-php-bcmath php54-php-devel \
     php54-php-fpm php54-php-gd php54-php-intl php54-php-ldap php54-php-mbstring php54-php-pdo \
-    php54-php-pecl-memcache php54-php-process php54-php-soap php54-php-xml \
+    php54-php-pecl-memcache php54-php-process php54-php-soap php54-php-xml php54-php-opcache \
     php54-php-pecl-imagick php54-php-pecl-xdebug && \
     yum clean all -y
 
@@ -36,10 +36,14 @@ COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 # run and build the applications.
 COPY ./contrib/ /opt/app-root
 
+# Copy php conf
+RUN cp /etc/httpd/conf.d/php54-php.conf /opt/rh/httpd24/root/etc/httpd/conf.d/php54-php.conf
+
 # In order to drop the root user, we have to make some directories world
 # writeable as OpenShift default security model is to run the container under
 # random UID.
 RUN sed -i -f /opt/app-root/etc/httpdconf.sed /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf && \
+    sed -i '/php_value session.save_path/d' /opt/rh/httpd24/root/etc/httpd/conf.d/php54-php.conf && \
     head -n151 /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf | tail -n1 | grep "AllowOverride All" || exit && \
     mkdir /tmp/sessions && \
     chmod -R a+rwx /opt/rh/php54/root/etc && \
