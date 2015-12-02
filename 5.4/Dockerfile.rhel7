@@ -21,7 +21,8 @@ LABEL BZComponent="openshift-sti-php-docker" \
       Architecture="x86_64"
 
 # Install Apache httpd and PHP
-RUN yum-config-manager --enable rhel-server-rhscl-7-rpms && \
+RUN subscription-manager repos --disable="*" && \
+    yum-config-manager --enable rhel-server-rhscl-7-rpms && \
     yum-config-manager --enable rhel-7-server-optional-rpms && \
     yum install -y --setopt=tsflags=nodocs httpd24 php54 php54-php php54-php-mysqlnd php54-php-pgsql php54-php-bcmath php54-php-devel \
     php54-php-fpm php54-php-gd php54-php-intl php54-php-ldap php54-php-mbstring php54-php-pdo \
@@ -36,8 +37,8 @@ COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 COPY ./contrib/ /opt/app-root
 
 # Copy php54 conf and module to httpd
-RUN cp /etc/httpd/conf.modules.d/10-php54-php.conf /opt/rh/httpd24/root/etc/httpd/conf.modules.d/ && \
-    cp /usr/lib64/httpd/modules/libphp54-php5.so /opt/rh/httpd24/root/etc/httpd/modules/
+#RUN cp /etc/httpd/conf.modules.d/10-php54-php.conf /opt/rh/httpd24/root/etc/httpd/conf.modules.d/ && \
+#    cp /usr/lib64/httpd/modules/libphp54-php5.so /opt/rh/httpd24/root/etc/httpd/modules/
 
 # In order to drop the root user, we have to make some directories world
 # writeable as OpenShift default security model is to run the container under
