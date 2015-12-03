@@ -47,6 +47,7 @@ RUN sed -i -f /opt/app-root/etc/httpdconf.sed /etc/httpd/conf/httpd.conf && \
     chmod -R a+rwx /var/www && \
     chmod -R a+rwx /etc/httpd && \
     chmod -R a+rwx /var/run/httpd && \
+    chmod -R a+rwx /var/log/httpd && \
     chmod -R a+rwx /tmp/sessions && \
     chown -R 1001:0 /opt/app-root /tmp/sessions
 
