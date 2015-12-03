@@ -59,6 +59,8 @@ RUN sed -i -f /opt/app-root/etc/httpdconf.sed /etc/httpd/conf/httpd.conf && \
 # Workaround to Bug ref https://bugzilla.redhat.com/show_bug.cgi?id=1215667
 RUN sed -i '/LoadModule auth_digest_module modules\/mod_auth_digest.so/d' /etc/httpd/conf.modules.d/00-base.conf
 
+RUN mkdir -p /run/httpd && chmod -R a+rwx /run/httpd
+
 USER 1001
 
 # Set the default CMD to print the usage of the language image
