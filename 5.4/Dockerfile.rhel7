@@ -42,6 +42,7 @@ RUN sed -i -f /opt/app-root/etc/httpdconf.sed /etc/httpd/conf/httpd.conf && \
     sed -i '/php_value session.save_path/d' /etc/httpd/conf.d/php54-php.conf && \
     head -n151 /etc/httpd/conf/httpd.conf | tail -n1 | grep "AllowOverride All" || exit && \
     mkdir /tmp/sessions && \
+    mkdir /var/run/httpd && \
     chmod -R a+rwx /etc/httpd && \
     chmod -R a+rwx /var/run/httpd && \
     chmod -R a+rwx /tmp/sessions && \
