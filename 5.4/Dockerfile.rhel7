@@ -55,7 +55,8 @@ RUN sed -i -f /opt/app-root/etc/httpdconf.sed /etc/httpd/conf/httpd.conf && \
     chmod -R a+rwx /usr/sbin/httpd && \
     chmod -R a+rwx /tmp/sessions && \
     chown -R 1001:0 /opt/app-root /tmp/sessions
-
+    
+# Workaround to Bug ref https://bugzilla.redhat.com/show_bug.cgi?id=1215667
 RUN sed -i '/LoadModule auth_digest_module modules\/mod_auth_digest.so/d' /etc/httpd/conf.modules.d/00-base.conf
 
 USER 1001
