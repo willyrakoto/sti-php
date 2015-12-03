@@ -43,7 +43,6 @@ RUN sed -i -f /opt/app-root/etc/httpdconf.sed /etc/httpd/conf/httpd.conf && \
     head -n151 /etc/httpd/conf/httpd.conf | tail -n1 | grep "AllowOverride All" || exit && \
     mkdir /tmp/sessions && \
     mkdir /var/run/httpd && \
-    mkdir /run/httpd && \
     chmod -R a+rwx /opt/rh/php54 && \
     chmod -R a+rwx /var/www && \
     chmod -R a+rwx /etc/httpd && \
