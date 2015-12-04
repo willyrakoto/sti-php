@@ -47,8 +47,6 @@ RUN sed -i -f /opt/app-root/etc/httpdconf.sed /etc/httpd/conf/httpd.conf && \
     chmod -R a+rwx /opt/rh/php54 && \
     chmod -R a+rwx /var/www && \
     chmod -R a+rwx /etc/httpd && \
-    chmod -R a+rwx /var/run/httpd && \
-    chmod -R a+rwx /run/httpd && \
     chmod -R a+rwx /var/log/httpd && \
     chmod -R a+rwx /usr/lib64/httpd && \
     chmod -R a+rwx /usr/share/httpd && \
@@ -59,8 +57,6 @@ RUN sed -i -f /opt/app-root/etc/httpdconf.sed /etc/httpd/conf/httpd.conf && \
     
 # Workaround to Bug ref https://bugzilla.redhat.com/show_bug.cgi?id=1215667
 RUN sed -i '/LoadModule auth_digest_module modules\/mod_auth_digest.so/d' /etc/httpd/conf.modules.d/00-base.conf
-
-RUN mkdir -p /run/httpd && chmod -R a+rwx /run/httpd
 
 USER 1001
 
