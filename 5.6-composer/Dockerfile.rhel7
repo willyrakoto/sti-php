@@ -35,6 +35,7 @@ RUN mkdir -p /opt/org/composer
 ADD https://getcomposer.org/composer.phar /opt/org/composer/composer.phar
 COPY bin/composer /usr/bin/composer
 RUN chmod +x /usr/bin/composer
+RUN chmod +x /opt/org/composer/composer.phar
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 COPY ./s2i/bin/ $STI_SCRIPTS_PATH
@@ -54,6 +55,7 @@ RUN sed -i -f /opt/app-root/etc/httpdconf.sed /opt/rh/httpd24/root/etc/httpd/con
     chmod -R a+rwx /opt/rh/httpd24/root/var/run/httpd && \
     chmod -R a+rwx /tmp/sessions && \
     chown -R 1001:0 /opt/app-root /tmp/sessions
+    chown -R 1001:0 /opt/org/composer
 
 USER 1001
 
