@@ -30,6 +30,16 @@ RUN yum-config-manager --enable rhel-server-rhscl-7-rpms && \
     rh-php56-php-pecl-memcache rh-php56-php-process rh-php56-php-soap rh-php56-php-xml && \
     yum clean all -y
 
+# Install libs
+ADD http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm /tmp/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm
+RUN rpm -ivh /tmp/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm && \
+    yum install libmcrypt-dev \
+                libjpeg62-turbo-dev \
+                libpng12-dev \
+                libfreetype6-dev \
+                libxml2-dev \
+                --enablerepo=rpmforge-extras
+
 # Install composer
 RUN mkdir -p /opt/org/composer
 ADD https://getcomposer.org/composer.phar /opt/org/composer/composer.phar
