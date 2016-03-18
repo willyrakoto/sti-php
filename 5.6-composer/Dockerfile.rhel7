@@ -31,14 +31,14 @@ RUN yum-config-manager --enable rhel-server-rhscl-7-rpms && \
     yum clean all -y
 
 # Install libs
-ADD http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm /tmp/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm
-RUN rpm -ivh /tmp/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm && \
-    yum install libmcrypt-dev \
-                libjpeg62-turbo-dev \
-                libpng12-dev \
-                libfreetype6-dev \
-                libxml2-dev \
-                --enablerepo=rpmforge-extras
+RUN yum -y install epel-release
+RUN yum install php-mcrypt
+                
+# Install rpms
+ADD http://linuxsoft.cern.ch/cern/centos/7/updates/x86_64/Packages/libjpeg-turbo-devel-1.2.90-5.el7.x86_64.rpm /tmp/libjpeg-turbo-devel-1.2.90-5.el7.x86_64.rpm
+RUN rpm -Uvh /tmp/libjpeg-turbo-devel-1.2.90-5.el7.x86_64.rpm
+ADD http://mirror.centos.org/centos/7/updates/x86_64/Packages/libpng-devel-1.5.13-7.el7_2.x86_64.rpm /tmp/libpng-devel-1.5.13-7.el7_2.x86_64.rpm
+RUN rpm -Uvh /tmp/libpng-devel-1.5.13-7.el7_2.x86_64.rpm
 
 # Install composer
 RUN mkdir -p /opt/org/composer
